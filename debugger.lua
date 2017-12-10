@@ -23,6 +23,7 @@ function debugger(mainfile)
 	DEBUGGERVAR.n_level = 1
 	DEBUGGERVAR.level[1] = mainfile
 
+	-- may move outside
 	if DEBUGGERVAR.firstenter == true then
 		DEBUGGERVAR.step = "stepover"
 	else
@@ -53,7 +54,7 @@ function step(event, line)
 	print(debug.traceback())
 	print(s.short_src .. ":")
 	print("-----------------------------------")
-	showLines(lines, n, line, window)
+	showLines(lines, n, line, window, s.short_src)
 	print("-----------------------------------")
 	showList()
 	print("-----------------------------------")
@@ -110,7 +111,7 @@ function step(event, line)
 			DEBUGGERVAR.n_bp = DEBUGGERVAR.n_bp + 1
 			local bn = DEBUGGERVAR.n_bp
 			DEBUGGERVAR.breakpoint[bn] = {file = s.short_src, line = value[1]}
-			showLines(lines, n, line, window)
+			showLines(lines, n, line, window, s.short_src)
 
 			showBreadpoints()
 		end
@@ -358,7 +359,7 @@ function fileReader(filename)
 	return lines, n
 end
 
-function showLines(lines, n, line, window)
+function showLines(lines, n, line, window, src)
 	local page = math.floor((line-1) / window)
 	local pagestart = page * window + 1
 	local pageend = (page+1) * window
@@ -369,7 +370,7 @@ function showLines(lines, n, line, window)
 		local str
 		local bpflag = 0
 		for j = 1, DEBUGGERVAR.n_bp do
-			if DEBUGGERVAR.focalfunc == DEBUGGERVAR.breakpoint[j].file and
+			if src == DEBUGGERVAR.breakpoint[j].file and
 			   i == DEBUGGERVAR.breakpoint[j].line then
 				bpflag = 1
 			end
