@@ -1,12 +1,13 @@
-DEBUGGERVAR.firstenter = true
-DEBUGGERVAR.step = false
-DEBUGGERVAR.focalfunc = nil
+debug.DEBUGGERVAR.firstenter = true
+debug.DEBUGGERVAR.step = false
+debug.DEBUGGERVAR.focalfunc = nil
 -------------- BreakPoints ------------
-DEBUGGERVAR.n_bp = 1
-DEBUGGERVAR.breakpoint = {}
-DEBUGGERVAR.breakpoint[1] = {file = "main.lua",line = 13}
+debug.DEBUGGERVAR.breakpoint = {n = 1}
+debug.DEBUGGERVAR.breakpoint[1] = {file = "./main.lua",line = "test"}
 -------------- Var List ------------
-DEBUGGERVAR.n_list = 2
-DEBUGGERVAR.list = {}
-DEBUGGERVAR.list[1] = "a.b"
-DEBUGGERVAR.list[2] = "a.c"
+debug.DEBUGGERVAR.list = {n = 5}
+debug.DEBUGGERVAR.list[1] = "a.c"
+debug.DEBUGGERVAR.list[2] = "a.c.d"
+debug.DEBUGGERVAR.list[3] = "debug.DEBUGGERVAR.stepoverstack"
+debug.DEBUGGERVAR.list[4] = "debug.DEBUGGERVAR.focalfunc"
+debug.DEBUGGERVAR.list[5] = "debug.DEBUGGERVAR.step"
