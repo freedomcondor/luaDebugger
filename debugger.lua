@@ -7,6 +7,7 @@ debug.DEBUGGERVAR.stepoverstack = 0
 
 debug.DEBUGGERVAR.configfilename = "config_debugger.lua"
 debug.DEBUGGERVAR.tracebackfilename = "traceback.txt"
+debug.DEBUGGERVAR.tracebackfileswitch = false
 
 debug.DEBUGGERVAR.level = {n = 0}
 debug.DEBUGGERVAR.breakpoint = {n = 0}
@@ -134,8 +135,11 @@ end
 
 function debug.hookline(event, line, targetlevel)
 	-- record traceback
-	local tracef = io.open(debug.DEBUGGERVAR.tracebackfilename,"w")
-	tracef:write(debug.traceback())
+	if debug.DEBUGGERVAR.tracebackfileswitch == true then
+		local tracef = io.open(debug.DEBUGGERVAR.tracebackfilename,"w")
+		tracef:write(debug.traceback())
+		tracef:close()
+	end
 
 	-- do I stop?
 	local s = debug.getinfo(targetlevel)
