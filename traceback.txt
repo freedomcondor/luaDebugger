@@ -1,0 +1,6 @@
+stack traceback:
+	./debugger.lua:138: in function 'hookline'
+	./debugger.lua:44: in function '__index'
+	./main.lua:6: in function 'test'
+	main2.lua:6: in main chunk
+	[C]: in ?	[C]: in ?
